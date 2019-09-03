@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+  redis:
+    image: redis:5.0
+  web:
+    build: .
+    tty: true
+    volumes:
+      - .:/todo_line_app
+    ports:
+      - "8000:3000"
+    depends_on:
+      - db
